@@ -3,7 +3,9 @@ services:
     name: otp-verification-fastapi
     env: python
     plan: free
-    buildCommand: ""
+    build:
+      pythonVersion: 3.10   # 👈 REQUIRED: because blis==1.2.0 doesn’t support Python 3.13
+    buildCommand: "pip install -r requirements.txt"
     startCommand: ./start.sh
     envVars:
       - key: EMAIL_USER
