@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>I AM WATCHING YOU</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #c0e5ff, #f7d1ff);
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    .ghost {
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      width: 80px;
+      height: 100px;
+      background: white;
+      border-radius: 50% 50% 0 0;
+      transform: translateX(-50%);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+      animation: float 4s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    .ghost::after {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      width: 80px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+    }
+
+    .ghost-eye {
+      position: absolute;
+      top: 35%;
+      left: 20%;
+      width: 12px;
+      height: 12px;
+      background: black;
+      border-radius: 50%;
+    }
+
+    .ghost-eye.right {
+      left: 60%;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-20px); }
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      z-index: 1;
+      animation: fadeInCard 1.5s ease;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #6a0dad;
+      margin-bottom: 25px;
+      text-shadow: 0 0 8px rgba(255,255,255,0.6);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      text-align: left;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+    }
+
+    input[type="submit"] {
+      padding: 12px;
+      background: #6a0dad;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background: #7e3ff2;
+      box-shadow: 0 0 10px rgba(106, 13, 173, 0.3);
+    }
+
+    .export-link {
+      margin-top: 20px;
+      display: inline-block;
+      color: #444;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .export-link:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeInCard {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Ghost -->
+  <div class="ghost">
+    <div class="ghost-eye"></div>
+    <div class="ghost-eye right"></div>
+  </div>
+
+  <!-- Main Form Card -->
+  <div class="card">
+    <h1>👁 I Am Watching You</h1>
+
+    <form action="/request-otp" method="post">
+      <label>Name:</label>
+      <input type="text" name="name" required>
+
+      <label>Email:</label>
+      <input type="email" name="email" required>
+
+      <label>Phone:</label>
+      <input type="text" name="phone" required>
+
+      <input type="submit" value="Submit">
+    </form>
+
+    <a class="export-link" href="/export_excel">📥 Export Excel</a>
+  </div>
+
+</body>
+</html>
